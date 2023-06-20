@@ -1,0 +1,15 @@
+:root {
+    --main-bg-color: white;
+}
+
+body{
+    background-color:var(--main-bg-color);
+    background-image: url('../assets/waldoBackground.jpg');   
+    background-size: cover;                 
+    background-repeat:   no-repeat;
+    background-position: center;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
