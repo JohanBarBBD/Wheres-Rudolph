@@ -1,12 +1,113 @@
-body{
-    height: 100vh;
-    width: 100vw;
+:root {
+    --main-bg-color: white;
+    --git-bg-color: green;
+    --google-bg-color: red;
+    --main-txt-color: black;
+    --yellow-bg-color: yellow;
+    --play-bg-color: blue;
+    --view-leaderboard-bg-color: purple;
 
-    margin: 0;
-    padding: 0;
-
-    background: url('../assets/waldoBackground.png') no-repeat center center fixed;
-    background-color: #fff;
-    background-size: cover;
 }
 
+
+
+body{
+    background-color:var(--main-bg-color);
+    background-image: url('../assets/waldoBackground.png');   
+    background-size: cover;                 
+    background-repeat:   no-repeat;
+    background-position: center;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header{
+    background-color:#fffefe56;
+    backdrop-filter:blur(5px);
+    width: 80vw;
+    margin-bottom: 1rem;
+    max-width: 50rem;
+    position: relative;
+    top: 0rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color:#fffefe56;
+    backdrop-filter:blur(5px);
+    width: 80vw;
+    height: 50vh;
+    max-width: 50rem;
+    position: relative;
+}
+
+input{
+    height: 10%;
+    width: 40%;
+    border-radius: 0.5rem;
+    margin-bottom: 0.8rem;  
+}
+
+button{
+    height: 10%;
+    width: 40%;
+    margin-bottom: 0.8rem; 
+   
+}
+
+#git-login{
+    background-color: var(--git-bg-color);
+    color: var(--main-txt-color);
+}
+#google-login{
+    background-color: var(--google-bg-color);
+    color: var(--main-txt-color);
+}
+#login-btn{
+background-color: var(--yellow-bg-color);
+}
+#register-btn{
+background-color: var(--yellow-bg-color);
+}
+#play-btn,#ready-btn,#main-menu-btn{
+    background-color: var(--play-bg-color);
+
+}
+#view-leaderboard-btn{
+    background-color: var(--view-leaderboard-bg-color);
+}
+#main-page{
+display: flex; 
+flex-direction: column;
+justify-content: space-evenly;
+}
+
+#instruction-paragraph{
+    background-color: var(--main-bg-color);
+    height: 70%;
+    width: 60%;
+    padding: 2rem;
+    justify-content: center;
+}
+
+#game-score{
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+#leaderboard{
+background-color: var(--main-bg-color);
+height: 70%;
+width: 80%;
+}
