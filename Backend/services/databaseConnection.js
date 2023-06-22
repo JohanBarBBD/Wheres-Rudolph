@@ -1,18 +1,27 @@
-require('dotenv').config;
-const mssql = require('mssql');
-let db;
+require('dotenv').config();
+const mysql = require('mysql');
 
-console.log("ENTERS");
-try {
-  db = mssql.connect(process.env.DATABASE_CONNECTION_STRING);
-  console.log("CONNECTED");
-}catch(err) {
-  console.log(err);
-}
 const {
-  DATABASE_CONNECTION_STRING
+  HOST,
+  DBPORT,
+  USER,
+  PASSWORD,
+  DATABASE,
 } = process.env;
 
+let db = mysql.createConnection({
+  host: HOST,
+  port: DBPORT,
+  user: USER,
+  password: PASSWORD,
+  database: DATABASE,
+});
+
+db.connect(function(err) {
+  console.log("Enters!");
+  if (err) throw err;
+  console.log("Connected!");
+});
 
 module.exports = {
   db,
