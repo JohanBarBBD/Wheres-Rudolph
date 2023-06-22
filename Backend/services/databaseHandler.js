@@ -1,4 +1,13 @@
 const sql = require('mssql');
+require('dotenv').config();
+
+const config = {
+  server: process.env.HOST,
+  port: parseInt(process.env.DBPORT),
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE,
+}; 
 
 class LeaderboardEntry {
   constructor (username, highscore) {
@@ -7,39 +16,62 @@ class LeaderboardEntry {
   }
 }
 
-async function newUserInfo (db, username) {
+async function newUserInfo (username) {
   try {
-    const query = `INSERT INTO UserInfo (Username, HighScore) VALUES (@username, 0);`;
-    const request = new db.Request();
-    request.input('username', db.VarChar, username);
+    await sql.connect({
+      ...config,
+      trustServerCertificate: true,
+    })
+    const query = `INSERT INTO UserInfo (Username, HighScore) OUTPUT inserted.Username, inserted.HighScore VALUES (@username, 0);`;
+    const request = new sql.Request();
+    request.input('username', sql.VarChar, username);
 
-    const result = request.query(query);
+    const result = await request.query(query);
+
+    await sql.close();
+    return new LeaderboardEntry(result.recordset[0].Username, result.recordset[0].HighScore);
   }
   catch (error) {
     console.error('Error: ', error.message);
   }
 }
 
-async function insertScore (db, time, username) {
+async function insertScore (username, time) {
   try {
-    const query = 'UPDATE UserInfo SET HighScore = @time WHERE Username = @username;';
-    const request = new db.Request();
-    request.input('time', db.Int, time);
-    request.input('username', db.VarChar, username);
+    await sql.connect({
+      ...config,
+      trustServerCertificate: true,
+    })
 
-    const result = request.query(query);
+    const query = 'UPDATE UserInfo SET HighScore = @time OUTPUT inserted.Username, inserted.HighScore WHERE Username = @username;';
+    const request = new sql.Request();
+    request.input('time', sql.Int, time);
+    request.input('username', sql.VarChar, username);
+
+    const result = await request.query(query);
+
+    await sql.close();
+
+    return new LeaderboardEntry(result.recordset[0].Username, result.recordset[0].HighScore);
   }
   catch (error) {
     console.error('Error: ', error.message);
   }
 };
 
-async function getLeaderboard (db) {
+async function getLeaderboard () {
   try {
+    await sql.connect({
+      ...config,
+      trustServerCertificate: true,
+    })
+
     const query = 'SELECT TOP 15 Username, HighScore FROM [dbo].[UserInfo] ORDER BY HighScore';
-    const request = new db.Request();
+    const request = new sql.Request();
 
     const result = await request.query(query);
+
+    await sql.close();
 
     const leaderboard = result.recordset.map(row => {
       return new LeaderboardEntry(row.Username, row.HighScore);
