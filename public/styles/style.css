@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+
 :root {
     --main-bg-color: white;
+    --header-bg-color: #fffefe56;
     --git-bg-color: green;
     --google-bg-color: red;
     --main-txt-color: black;
@@ -7,7 +11,12 @@
     --play-bg-color: blue;
     --view-leaderboard-bg-color: purple;
     --gradient-bg-color: linear-gradient(red,blue);
+    --font-family: 'Inter', serif;
+    --git-btn-bg-color:
+}
 
+html{
+    font-size:16px; /*   1rem = 10px */ 
 }
 
 
@@ -27,17 +36,30 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: var(--font-family);
 }
 
 header{
-    background-color:#fffefe56;
+    background-color: var(--header-bg-color);
     backdrop-filter:blur(5px);
     width: 80vw;
+    max-width: 37.5em;
     margin-bottom: 1rem;
-    max-width: 50rem;
     position: relative;
     top: 0rem;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
 }
+h1{    
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+}
+h2{    
+    color: black;
+    text-shadow: 1px 1px 2px #ffffff, 0 0 1em #ffffff, 0 0 0.2em #ffffff;
+}
+
+
 
 main {
     display: flex;
@@ -45,27 +67,26 @@ main {
     justify-content: center;
     align-items: center;
     text-align: center;
+    gap: 0.5rem;
     background-color:#fffefe56;
     backdrop-filter:blur(5px);
     width: 80vw;
-    height: 50vh;
-    max-width: 50rem;
-    position: relative;
+    height: 75vh;
+    max-width: 37.5em;    
 }
 
 input{
-    height: 10%;
-    width: 40%;
+    height: 2.5rem;
+    width: 14.5rem;
     border-radius: 0.5rem;
-    margin-bottom: 0.8rem;  
 }
 
 button{
-    height: 10%;
-    width: 40%;
-    margin-bottom: 0.8rem; 
-   
+    width: 15rem;   
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
+
 
 main img{
     width: 100%;
@@ -76,10 +97,55 @@ main img{
     background-color: var(--git-bg-color);
     color: var(--main-txt-color);
 }
-#google-login{
-    background-color: var(--google-bg-color);
-    color: var(--main-txt-color);
+
+.button {
+  appearance: none;
+  background-color: #FFFFFF;
+  border-radius: 40em;
+  border-style: none;
+  box-shadow: #ADCFFF 0 -12px 6px inset;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -.24px;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.3rem;
+  quotes: auto;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
+
+.button:hover {
+  background-color: #fff031;
+  box-shadow: #beb424 0 -6px 8px inset;
+  transform: scale(1.125);
+}
+
+.btn-github:hover {
+    background-color: #6e5494;
+    box-shadow: #3e3054 0 -6px 8px inset;
+    transform: scale(1.125);
+}
+.btn-google:hover {
+  background-color: #4285F4;
+  box-shadow: #244b8a 0 -6px 8px inset;
+  transform: scale(1.125);
+
+}
+
+.button:active {
+  transform: scale(1.025);
+}
+
 #login-btn{
 background-color: var(--yellow-bg-color);
 }
