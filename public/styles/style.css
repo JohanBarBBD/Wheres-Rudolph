@@ -79,12 +79,18 @@ input{
     height: 2.5rem;
     width: 14.5rem;
     border-radius: 0.5rem;
+    transition: all .15s;
+}
+input:focus{
+  transform: scale(1.125);
+}
+input:active{
+  transform: scale(1.125);
 }
 
 button{
     width: 15rem;   
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+
 }
 
 
@@ -122,11 +128,13 @@ main img{
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .button:hover {
-  background-color: #d7ca11;
-  box-shadow: #beb424 0 -6px 8px inset;
+  background-color: #ecdf30;
+  box-shadow: #d0c52b 0 -6px 8px inset;
   transform: scale(1.125);
   color: #FFFFFF;
 }
@@ -151,20 +159,22 @@ main img{
 #login-btn{
 background-color: var(--yellow-bg-color);
 }
-#register-btn{
-background-color: var(--yellow-bg-color);
-}
-#play-btn,#ready-btn,#main-menu-btn{
+
+#play-btn:hover,
+#ready-btn:hover,
+#main-menu-btn:hover{
     background-color: var(--play-bg-color);
+    box-shadow: var(--play-bg-color) 0 -12px 6px inset;
 
 }
-#view-leaderboard-btn{
+#view-leaderboard-btn:hover{
     background-color: var(--view-leaderboard-bg-color);
+    box-shadow: var(--view-leaderboard-bg-color) 0 -12px 6px inset;
 }
 #main-page{
 display: flex; 
 flex-direction: column;
-justify-content: space-evenly;
+justify-content: flex-start;
 }
 
 #instruction-paragraph{
