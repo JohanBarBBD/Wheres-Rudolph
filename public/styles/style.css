@@ -125,21 +125,23 @@ main img{
 }
 
 .button:hover {
-  background-color: #fff031;
+  background-color: #d7ca11;
   box-shadow: #beb424 0 -6px 8px inset;
   transform: scale(1.125);
+  color: #FFFFFF;
 }
 
 .btn-github:hover {
     background-color: #6e5494;
     box-shadow: #3e3054 0 -6px 8px inset;
     transform: scale(1.125);
+    color: #FFFFFF;
 }
 .btn-google:hover {
   background-color: #4285F4;
   box-shadow: #244b8a 0 -6px 8px inset;
   transform: scale(1.125);
-
+  color: #FFFFFF;
 }
 
 .button:active {
