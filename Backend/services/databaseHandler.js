@@ -16,6 +16,28 @@ class LeaderboardEntry {
   }
 }
 
+async function userExists (username) {
+  try {
+    await sql.connect({
+      ...config,
+      trustServerCertificate: true,
+    })
+    const query = `SELECT Username from UserInfo WHERE Username = @username`;
+    const request = new sql.Request();
+    request.input('username', sql.VarChar, username);
+
+    const result = await request.query(query);
+
+    await sql.close();
+
+    console.log(result.recordset.length);
+    return result.recordset.length > 0;
+  }
+  catch (error) {
+    console.error('Error: ', error.message);
+  }
+}
+
 async function newUserInfo (username) {
   try {
     await sql.connect({
@@ -85,6 +107,7 @@ async function getLeaderboard () {
 };
 
 module.exports = {
+  userExists,
   newUserInfo,
   insertScore,
   getLeaderboard,
