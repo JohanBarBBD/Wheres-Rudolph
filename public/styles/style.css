@@ -200,3 +200,16 @@ width: 80%;
     background: var(--gradient-bg-color);
 }
 
+#rudolph-btn{
+    border: none;
+    cursor: pointer;
+    appearance: none;
+    background-color: inherit;
+    width: 10%;
+    height: 10%;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    display: none;
+}
+
