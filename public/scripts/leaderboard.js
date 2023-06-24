@@ -10,7 +10,7 @@ async function populateBestTime(){
     });
     const myJson = await response.json();
   
-  document.getElementById('scoreValue').innerHTML=`Your best time is: ${myJson.HighScore} seconds`;
+  document.getElementById('scoreValue').innerText=`Your best time is: ${myJson.HighScore} seconds`;
 }
 
 populateBestTime();
