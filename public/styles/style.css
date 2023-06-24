@@ -219,3 +219,18 @@ ul{
     width: auto;
     height: 100%;
 }
+
+.how-to-play{
+    background-color: #ffffffb0;
+    margin-left: 10%;
+    margin-right: 10%;    
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.how-to-play-img{
+    width: auto;
+    height: 5rem;
+}
+.how-to-play-main{
+    justify-content: space-around;
+}
