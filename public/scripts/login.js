@@ -2,7 +2,6 @@
 // with the body params of  { name: username, username: username, admin: false }
 
 async function loginButtonHandler(){
-  const basepath = 'file:///C:/Users/pints001/Documents/Grad%20Work/Security%20levelup/Wheres-Rudolph/public/pages/';
   const username = document.getElementById('uname');
   const password = document.getElementById('psw');
 
@@ -29,4 +28,5 @@ async function loginButtonHandler(){
     console.log(`${err} ITS FUCKED`);
   }
 };
+
 

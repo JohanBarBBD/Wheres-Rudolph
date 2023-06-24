@@ -10,22 +10,23 @@
     --yellow-bg-color: yellow;
     --play-bg-color: blue;
     --view-leaderboard-bg-color: purple;
-    --gradient-bg-color: linear-gradient(red,blue);
+    --gradient-bg-color: linear-gradient(red, blue);
     --font-family: 'Inter', serif;
     --git-btn-bg-color:
 }
 
-html{
-    font-size:16px; /*   1rem = 10px */ 
+html {
+    font-size: 16px;
+    /*   1rem = 10px */
 }
 
 
 
-body{
-    background-color:var(--main-bg-color);
-    background-image: url('../assets/waldoBackground.png');   
-    background-size: cover;                 
-    background-repeat:   no-repeat;
+body {
+    background-color: var(--main-bg-color);
+    background-image: url('../assets/waldoBackground.png');
+    background-size: cover;
+    background-repeat: no-repeat;
     background-position: center;
     height: 100vh;
     width: 100vw;
@@ -39,9 +40,9 @@ body{
     font-family: var(--font-family);
 }
 
-header{
+header {
     background-color: var(--header-bg-color);
-    backdrop-filter:blur(5px);
+    backdrop-filter: blur(5px);
     width: 80vw;
     max-width: 37.5em;
     margin-bottom: 1rem;
@@ -50,11 +51,13 @@ header{
     color: white;
     text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
 }
-h1{    
+
+h1 {
     color: white;
     text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
 }
-h2{    
+
+h2 {
     color: black;
     text-shadow: 1px 1px 2px #ffffff, 0 0 1em #ffffff, 0 0 0.2em #ffffff;
 }
@@ -68,40 +71,42 @@ main {
     align-items: center;
     text-align: center;
     gap: 0.5rem;
-    background-color:#fffefe56;
-    backdrop-filter:blur(5px);
+    background-color: #fffefe56;
+    backdrop-filter: blur(5px);
     width: 80vw;
     height: 75vh;
-    max-width: 37.5em;    
+    max-width: 37.5em;
     overflow: hidden;
 }
 
-input{
+input {
     height: 2.5rem;
     width: 14.5rem;
     border-radius: 0.5rem;
     transition: all .15s;
 }
-input:focus{
-  transform: scale(1.125);
+
+input:focus {
+    transform: scale(1.125);
 }
-input:active{
-  transform: scale(1.125);
+
+input:active {
+    transform: scale(1.125);
 }
 
 
-main img{
+main img {
     width: 100%;
     height: 100%;
 }
 
-#git-login{
+#git-login {
     background-color: var(--git-bg-color);
     color: var(--main-txt-color);
 }
 
 .rounded-button {
-    width: 15rem; 
+    width: 15rem;
     appearance: none;
     background-color: #FFFFFF;
     border-radius: 40em;
@@ -111,7 +116,7 @@ main img{
     color: #000000;
     cursor: pointer;
     display: inline-block;
-    font-family: -apple-system,sans-serif;
+    font-family: -apple-system, sans-serif;
     font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: -.24px;
@@ -130,10 +135,10 @@ main img{
 }
 
 .rounded-button:hover {
-  background-color: #ecdf30;
-  box-shadow: #d0c52b 0 -6px 8px inset;
-  transform: scale(1.125);
-  color: #FFFFFF;
+    background-color: #ecdf30;
+    box-shadow: #d0c52b 0 -6px 8px inset;
+    transform: scale(1.125);
+    color: #FFFFFF;
 }
 
 .btn-github:hover {
@@ -142,39 +147,42 @@ main img{
     transform: scale(1.125);
     color: #FFFFFF;
 }
+
 .btn-google:hover {
-  background-color: #4285F4;
-  box-shadow: #244b8a 0 -6px 8px inset;
-  transform: scale(1.125);
-  color: #FFFFFF;
+    background-color: #4285F4;
+    box-shadow: #244b8a 0 -6px 8px inset;
+    transform: scale(1.125);
+    color: #FFFFFF;
 }
 
 .rounded-button:active {
-  transform: scale(1.025);
+    transform: scale(1.025);
 }
 
-#login-btn{
-background-color: var(--yellow-bg-color);
+#login-btn {
+    background-color: var(--yellow-bg-color);
 }
 
 #play-btn:hover,
 #ready-btn:hover,
-#main-menu-btn:hover{
+#main-menu-btn:hover {
     background-color: var(--play-bg-color);
     box-shadow: var(--play-bg-color) 0 -12px 6px inset;
 
 }
-#view-leaderboard-btn:hover{
+
+#view-leaderboard-btn:hover {
     background-color: var(--view-leaderboard-bg-color);
     box-shadow: var(--view-leaderboard-bg-color) 0 -12px 6px inset;
 }
-#main-page{
-display: flex; 
-flex-direction: column;
-justify-content: flex-start;
+
+#main-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
-#instruction-paragraph{
+#instruction-paragraph {
     background-color: var(--main-bg-color);
     height: 70%;
     width: 60%;
@@ -182,22 +190,27 @@ justify-content: flex-start;
     justify-content: center;
 }
 
-#game-score{
+#game-score {
     font-size: 4rem;
     font-weight: bold;
 }
 
-#leaderboard{
-background-color: var(--main-bg-color);
-height: 70%;
-width: 80%;
+#leaderboard {
+    background-color: var(--main-bg-color);
+    height: 70%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow:hidden;
 }
 
-.game-body{
+.game-body {
     background: var(--gradient-bg-color);
 }
 
-#rudolph-btn{
+#rudolph-btn {
     background-color: Transparent;
     border: none;
     appearance: none;
@@ -211,11 +224,11 @@ width: 80%;
 
 /* Main page */
 
-ul{
+ul {
     list-style: none;
 }
 
-.game-bg{
+.game-bg {
     width: auto;
     height: 100%;
 }
@@ -233,4 +246,27 @@ ul{
 }
 .how-to-play-main{
     justify-content: space-around;
+
+#topFiveLable {
+    font-weight: bolder;
+    font-size: 3rem;
+}
+
+ol li {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-size: 2rem;
+    text-align:left;
+
+}
+
+ol{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+
 }
