@@ -85,5 +85,5 @@ app.put("/score", authenticateUser, async function(req, res){
 
 const server = app.listen(process.env.PORT || 8080, function () {
   const port = server.address().port;
-  console.log("Application running on port: ", port);
+  console.log(`Application running on http://localhost:${port}`);
 });
