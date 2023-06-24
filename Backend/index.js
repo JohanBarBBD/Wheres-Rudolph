@@ -57,10 +57,10 @@ app.post("/login", async function(req, res){
 });
 
 //THIS WAS FOR TESTING PURPOSES
-app.get("/score", async function(req,res){
+app.get("/score", authenticateUser, async function(req,res){
   try{
-    const result = await getUserScore('StevenTest');
-    res.send(result);
+    const result = await getUserScore(req.user.username);
+    res.json(result);
   }catch(err){
     res.status(500).send("Technical error try again later");
   }
@@ -79,7 +79,7 @@ app.put("/score", authenticateUser, async function(req, res){
       res.status(304).send('score is not the highest');
     };
   }catch(err){
-    res.status(500).send("Technincal error please try again later");
+    res.status(500).send("Technical error please try again later");
   }
 });
 
