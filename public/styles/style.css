@@ -73,6 +73,7 @@ main {
     width: 80vw;
     height: 75vh;
     max-width: 37.5em;    
+    overflow: hidden;
 }
 
 input{
@@ -88,11 +89,6 @@ input:active{
   transform: scale(1.125);
 }
 
-button{
-    width: 15rem;   
-
-}
-
 
 main img{
     width: 100%;
@@ -104,35 +100,36 @@ main img{
     color: var(--main-txt-color);
 }
 
-.button {
-  appearance: none;
-  background-color: #FFFFFF;
-  border-radius: 40em;
-  border-style: none;
-  box-shadow: #ADCFFF 0 -12px 6px inset;
-  box-sizing: border-box;
-  color: #000000;
-  cursor: pointer;
-  display: inline-block;
-  font-family: -apple-system,sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: -.24px;
-  margin: 0;
-  outline: none;
-  padding: 1rem 1.3rem;
-  quotes: auto;
-  text-align: center;
-  text-decoration: none;
-  transition: all .15s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+.rounded-button {
+    width: 15rem; 
+    appearance: none;
+    background-color: #FFFFFF;
+    border-radius: 40em;
+    border-style: none;
+    box-shadow: #ADCFFF 0 -12px 6px inset;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -.24px;
+    margin: 0;
+    outline: none;
+    padding: 1rem 1.3rem;
+    quotes: auto;
+    text-align: center;
+    text-decoration: none;
+    transition: all .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
-.button:hover {
+.rounded-button:hover {
   background-color: #ecdf30;
   box-shadow: #d0c52b 0 -6px 8px inset;
   transform: scale(1.125);
@@ -152,7 +149,7 @@ main img{
   color: #FFFFFF;
 }
 
-.button:active {
+.rounded-button:active {
   transform: scale(1.025);
 }
 
@@ -201,15 +198,24 @@ width: 80%;
 }
 
 #rudolph-btn{
+    background-color: Transparent;
     border: none;
-    cursor: pointer;
     appearance: none;
-    background-color: inherit;
-    width: 10%;
-    height: 10%;
+    width: 1rem;
+    height: auto;
     padding: 0;
     margin: 0;
     position: absolute;
     display: none;
 }
 
+/* Main page */
+
+ul{
+    list-style: none;
+}
+
+.game-bg{
+    width: auto;
+    height: 100%;
+}
