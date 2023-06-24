@@ -112,6 +112,26 @@ async function getLeaderboard () {
   }
 };
 
+async function getUserScore (username) {
+  try {
+    await sql.connect({
+      ...config,
+      trustServerCertificate: true,
+    })
+    const query = `SELECT HighScore from UserInfo WHERE Username = @username`;
+    const request = new sql.Request();
+    request.input('username', sql.VarChar, username);
+
+    const result = await request.query(query);
+
+    await sql.close();
+    return result.recordset[0];
+  }
+  catch (error) {
+    console.error('Error: ', error.message);
+  }
+}
+
 async function getHead () {
   try {
     await sql.connect({
@@ -161,6 +181,7 @@ module.exports = {
   newUserInfo,
   insertScore,
   getLeaderboard,
+  getUserScore,
   getHead,
   giveHead,
 };
