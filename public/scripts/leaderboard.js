@@ -13,4 +13,10 @@ async function populateBestTime(){
   document.getElementById('scoreValue').innerText=`Your best time is: ${myJson.HighScore} seconds`;
 }
 
+window.addEventListener('load',() =>{
+  if(!sessionStorage.getItem('token')){
+    window.location.href='login.html';
+  }
+});
+
 populateBestTime();
