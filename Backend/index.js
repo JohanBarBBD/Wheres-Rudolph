@@ -11,16 +11,17 @@ const app = express();
 
 app.use(cors());
 app.use(bodyparser.json());
+
 //middleware for authentication.
 function authenticateUser(req, res, next){
   const authorizationHeader = req.headers["authorization"];
   const token = authorizationHeader && authorizationHeader.split(' ')[1];
 
   if(token == null){
-    return res.status(401).send("NAUGHTY, NOT ALLOWED, UNAUTHORIZED");
+    return res.status(401).json({error: "Not authorized"});
   }
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-    if(err) return res.status(403).send("NAUGHTY FORBIDDEN");
+    if(err) return res.status(403).json({ error: "NAUGHTY FORBIDDEN"});
     req.user = decoded;
     next();
   });
