@@ -2,6 +2,7 @@
 // with the body params of  { name: username, username: username, admin: false }
 
 async function loginButtonHandler(){
+  const basepath = 'file:///C:/Users/pints001/Documents/Grad%20Work/Security%20levelup/Wheres-Rudolph/public/pages/';
   const username = document.getElementById('uname');
   const password = document.getElementById('psw');
 
@@ -23,8 +24,9 @@ async function loginButtonHandler(){
     const myJson = await response.json();
 
     sessionStorage.setItem('token',myJson);
+    window.location.href=`main.html`;
   } catch(err){
-    console.log('ITS FUCKED');
+    console.log(`${err} ITS FUCKED`);
   }
 };
 
