@@ -8,8 +8,11 @@ const bodyparser = require('body-parser');
 
 
 const app = express();
-
-app.use(cors());
+const corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions));
 app.use(bodyparser.json());
 
 //middleware for authentication.
@@ -27,7 +30,7 @@ function authenticateUser(req, res, next){
   });
 }
 
-app.get("/leaderboard", authenticateUser,async function(req, res, next){
+app.get("/leaderboard", cors(corsOptions), authenticateUser,async function(req, res, next){
   
   try{
     const response = await getLeaderboard();
@@ -47,7 +50,7 @@ app.post("/login", async function(req, res){
 
   try{
     const jwt = generateJWT(data); 
-    res.send(jwt)
+    res.json(jwt)
   }catch(err){
     console.log(`Error: ${err}`);
   }
