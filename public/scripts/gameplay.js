@@ -1,3 +1,4 @@
+
 let startTime, endtime, timeElapsed;
 
 
@@ -19,9 +20,27 @@ function setGame() {
     startTimer();
 }
 
-function endGame() {
+async function endGame() {
     endTimer();
-    document.location.href = "result.html";
-    console.log("rudolph found in" + timeElapsed + "seconds")
+    try{
+      const response = await fetch('http://localhost:8080/score', {
+      method: 'PUT',
+      mode: 'cors',
+      body: JSON.stringify({
+        score: timeElapsed
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+      }
+    });
+      if(response.status === 403 || response.status === 401){
+        window.location.href = "login.html";
+      }
+      sessionStorage.setItem('result', timeElapsed)
+      window.location.href="result.html";
+    }catch (err){
+      console.log(err);
+    }
 }
 
