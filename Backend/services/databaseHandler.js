@@ -16,6 +16,13 @@ class LeaderboardEntry {
   }
 }
 
+class SizeSetting {
+  constructor (name, value) {
+    this.SizeName = name;
+    this.SizeValue = value;
+  }
+}
+
 async function userExists (username) {
   try {
     await sql.connect({
@@ -30,7 +37,6 @@ async function userExists (username) {
 
     await sql.close();
 
-    console.log(result.recordset.length);
     return result.recordset.length > 0;
   }
   catch (error) {
@@ -88,7 +94,7 @@ async function getLeaderboard () {
       trustServerCertificate: true,
     })
 
-    const query = 'SELECT TOP 15 Username, HighScore FROM [dbo].[UserInfo] ORDER BY HighScore';
+    const query = 'SELECT TOP 15 Username, HighScore FROM UserInfo ORDER BY HighScore';
     const request = new sql.Request();
 
     const result = await request.query(query);
@@ -126,10 +132,56 @@ async function getUserScore (username) {
   }
 }
 
+async function getHead () {
+  try {
+    await sql.connect({
+      ...config,
+      trustServerCertificate: true,
+    })
+
+    const query = 'SELECT TOP 1 SizeName, SizeValue FROM HeadSizes INNER JOIN GlobalGameSettings ON HeadSizes.Id = GlobalGameSettings.HeadSizeId';
+    const request = new sql.Request();
+
+    const result = await request.query(query);
+
+    await sql.close();
+
+    const setting = new SizeSetting(result.recordset[0].SizeName, result.recordset[0].SizeValue);
+    return setting;
+  }
+  catch (error) {
+    console.error('Error: ', error.message);
+  }
+};
+
+async function giveHead (size) {
+  try {
+    await sql.connect({
+      ...config,
+      trustServerCertificate: true,
+    })
+
+    const query = 'UPDATE GlobalGameSettings SET HeadSizeId = (SELECT TOP 1 Id from HeadSizes WHERE SizeName = @size) OUTPUT inserted.HeadSizeId';
+    const request = new sql.Request();
+    request.input('size', sql.VarChar, size);
+
+    const result = await request.query(query);
+
+    await sql.close();
+
+    return result.recordset[0].HeadSizeId;
+  }
+  catch (error) {
+    console.error('Error: ', error.message);
+  }
+};
+
 module.exports = {
   userExists,
   newUserInfo,
   insertScore,
   getLeaderboard,
-  getUserScore
+  getUserScore,
+  getHead,
+  giveHead,
 };
