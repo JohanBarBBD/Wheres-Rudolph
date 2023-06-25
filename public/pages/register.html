@@ -10,6 +10,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+    <script src="../scripts/register.js" async defer></script>
 </head>
 
 <body class="waldo-body">
@@ -18,11 +19,12 @@
     </header>
     <main>
         <h2>Register</h2>
-        <input type="text" placeholder="Enter Username" name="uname" required>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-        <input type="text" placeholder="First Name" name="fname" required>
-        <input type="text" placeholder="Last Name" name="lname" required>
-        <button type="submit" class="rounded-button" id="register-btn">Register</button>
+        <input type="text" placeholder="Enter Username" id="uname" required>
+        <input type="password" placeholder="Enter Password" id="psw" required>
+        <input type="text" placeholder="First Name" id="fname" required>
+        <input type="text" placeholder="Last Name" id="lname" required>
+        <button type="submit" class="rounded-button" id="register-btn" onclick="RegisterNewUser()">Register</button>
+        <p>Have an account already? <a href="../login.html">Login here</a></p>
     </main>
 </body>
 
