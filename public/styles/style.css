@@ -203,7 +203,7 @@ main img {
     justify-content: center;
     flex-direction: column;
     flex-wrap: wrap;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .game-body {
@@ -233,19 +233,22 @@ ul {
     height: 100%;
 }
 
-.how-to-play{
+.how-to-play {
     background-color: #ffffffb0;
     margin-left: 10%;
-    margin-right: 10%;    
+    margin-right: 10%;
     padding-left: 1rem;
     padding-right: 1rem;
 }
-.how-to-play-img{
+
+.how-to-play-img {
     width: auto;
     height: 5rem;
 }
-.how-to-play-main{
+
+.how-to-play-main {
     justify-content: space-around;
+}
 
 #topFiveLable {
     font-weight: bolder;
@@ -257,11 +260,11 @@ ol li {
     padding: 0;
     font-weight: bold;
     font-size: 2rem;
-    text-align:left;
+    text-align: left;
 
 }
 
-ol{
+ol {
     width: 100%;
     height: 100%;
     display: flex;
@@ -269,4 +272,71 @@ ol{
     flex-direction: column;
     align-items: center;
 
+}
+
+#snackbar {
+    visibility: hidden;
+    min-width: 5em;
+    width: 35%;
+    background-color: var(--yellow-bg-color);
+    color: var(--main-txt-color);
+    text-align: center;
+    border-radius: 0.5rem;
+    padding: 1em;
+    bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
 }
