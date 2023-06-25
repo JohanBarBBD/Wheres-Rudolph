@@ -23,7 +23,7 @@ async function loginButtonHandler(){
     const myJson = await response.json();
 
     sessionStorage.setItem('token',myJson);
-    window.location.href=`main.html`;
+    window.location.href=`./pages/main.html`;
   } catch(err){
     console.log(`${err} ITS FUCKED`);
   }
