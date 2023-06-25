@@ -13,11 +13,10 @@ function validatePassword() {
   const upperCase = /[A-Z]/
   const characterRepeat = /(.)\1{2,}/
   const lowerCase = /[a-z]/ 
-  let username = document.getElementById("uname").value;
-  let password = document.getElementById("psw").value;
+  const username = document.getElementById("uname").value;
+  const password = document.getElementById("psw").value;
 
-  username = "f";
-  password = "aB,1abhsutdfhjwiudydn";
+ 
   if (username === "") {
     message = "Input username";
   } else if (password.length < 10) {
@@ -33,21 +32,17 @@ function validatePassword() {
     message = "Include an upper case character in password";
   } else if(!lowerCase.test(password)){
     message = "Include lower case character in password";
-  }else if(!password.match(characterRepeat)){
-    message = "Make sure password does not have a character repeated 3 times consecutively"
+  }else if(password.match(characterRepeat)!==null){
+    message = "Do not consecutively repeat characters more than 3 times"
   }
-
-  console.log(!password.match(characterRepeat))
- 
 
   if (message != "") {
     showInvalidMessage(message);
     return false;
   }
 
-  return true;
+  return false;
 }
-
 
 // This will need to call http://localhost://login
 // with the body params of  { name: username, username: username, admin: false }
@@ -74,12 +69,11 @@ async function loginButtonHandler() {
       });
       const myJson = await response.json();
 
-      sessionStorage.setItem('token', myJson);
-      window.location.href = `main.html`;
-    } catch (err) {
-      console.log(`${err} ITS FUCKED`);
-    }
+    sessionStorage.setItem('token',myJson);
+    window.location.href=`./pages/main.html`;
+  } catch(err){
+    console.log(`${err} ITS FUCKED`);
   }
 };
 
-
+}

@@ -278,7 +278,6 @@ ol {
     visibility: hidden;
     min-width: 5em;
     width: 35%;
-    height: 3.5%;
     background-color: var(--yellow-bg-color);
     color: var(--main-txt-color);
     text-align: center;
@@ -286,7 +285,6 @@ ol {
     padding: 1em;
     bottom: 0.5rem;
     font-size: 1rem;
-    overflow: scroll;
 }
 
 #snackbar.show {

@@ -35,7 +35,7 @@ async function endGame() {
       }
     });
       if(response.status === 403 || response.status === 401){
-        window.location.href = "login.html";
+        window.location.href = "../login.html";
       }
       sessionStorage.setItem('result', timeElapsed)
       window.location.href="result.html";
@@ -46,7 +46,7 @@ async function endGame() {
 
 window.addEventListener('load',() =>{
   if(!sessionStorage.getItem('token')){
-    window.location.href='login.html';
+    window.location.href='../login.html';
   }
 });
 
