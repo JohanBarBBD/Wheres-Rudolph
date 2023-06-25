@@ -108,4 +108,3 @@ async function loginButtonHandler(){
   }
 };
 
-}
