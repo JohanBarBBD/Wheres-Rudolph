@@ -19,11 +19,12 @@
     </header>
     <main>
         <h2>Login</h2>
-        <button type="submit" class="rounded-button btn-github">Login with Github</button>
+        <button type="submit" class="rounded-button btn-github" onclick="gitHublogin()">Login with Github</button>
         <button type="submit" class="rounded-button btn-google">Login with Google</button>
         <input type="text" placeholder="Enter Username" id="uname" required>
         <input type="password" placeholder="Enter Password" id="psw" required>
         <button type="submit"class="rounded-button" onclick="loginButtonHandler()">Login</button>
+        <p>Don't have an account? <a href="./pages/register.html">Register here</a></p>
         <aside id="snackbar"></aside>
     </main>
 </body>

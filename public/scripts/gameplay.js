@@ -1,7 +1,6 @@
 
 let startTime, endtime, timeElapsed;
 
-
 function startTimer() {
     startTime = new Date();
 }
@@ -40,7 +39,7 @@ async function endGame() {
       sessionStorage.setItem('result', timeElapsed)
       window.location.href="result.html";
     }catch (err){
-      console.log(err);
+      alert("Technical error, try again later.")
     }
 }
 
