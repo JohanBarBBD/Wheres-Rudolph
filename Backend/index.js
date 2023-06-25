@@ -1,3 +1,5 @@
+const https = require("https");
+const fs = require("fs");
 const {getLeaderboard, userExists, getUserScore, insertScore, newUserInfo} = require('./services/databaseHandler')
 const express = require('express');
 const cors = require('cors');
@@ -101,7 +103,11 @@ app.put("/score", authenticateUser, async function(req, res){
   }
 });
 
-const server = app.listen(process.env.PORT || 8080, function () {
-  const port = server.address().port;
-  console.log(`Application running on http://localhost:${port}`);
+const options = {
+  key: process.env.CERTKEY,
+  cert: fs.readFileSync('../server.crt'),
+}
+
+https.createServer(options, app).listen(process.env.PORT, function () {
+  console.log(`Application running on https://localhost:${process.env.PORT}`);
 });
