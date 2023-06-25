@@ -12,29 +12,40 @@ function validatePassword() {
   const specialCharacters = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
   const upperCase = /[A-Z]/
   const characterRepeat = /(.)\1{2,}/
-  const lowerCase = /[a-z]/ 
+  const lowerCase = /[a-z]/
   const username = document.getElementById("uname").value;
   const password = document.getElementById("psw").value;
 
- 
+
   if (username === "") {
     message = "Input username";
-  } else if (password.length < 10) {
-    message = "Input password longer than 10 characters";
-  } else if (password.length > 128) {
-    message = "Input password less than 128 characters";
-  } else if(password.match(/\d/)===null){
-    message = "Include digit in password";
-  } else if(!specialCharacters.test(password)){
-    specialCharacters.test(password)
-    message = "Include special character in password";
-  } else if(!upperCase.test(password)){
-    message = "Include an upper case character in password";
-  } else if(!lowerCase.test(password)){
-    message = "Include lower case character in password";
-  }else if(password.match(characterRepeat)!==null){
-    message = "Do not consecutively repeat characters more than 3 times"
   }
+
+  switch (password) {
+    case password.length < 10:
+      message = "Input password longer than 10 characters";
+      break;
+    case password.length > 128:
+      message = "Input password less than 128 characters";
+      break;
+    case password.match(/\d/) === null:
+      message = "Include digit in password";
+      break;
+    case !specialCharacters.test(password):
+      message = "Include special character in password";
+      break;
+    case !upperCase.test(password):
+      message = "Include an upper case character in password";
+      break;
+    case !lowerCase.test(password):
+      message = "Include lower case character in password";
+      break;
+    case password.match(characterRepeat) !== null:
+      message = "Do not consecutively repeat characters more than 3 times"
+      break;
+
+  }
+
 
   if (message != "") {
     showInvalidMessage(message);
@@ -69,11 +80,11 @@ async function loginButtonHandler() {
       });
       const myJson = await response.json();
 
-    sessionStorage.setItem('token',myJson);
-    window.location.href=`./pages/main.html`;
-  } catch(err){
-    console.log(`${err} ITS FUCKED`);
-  }
-};
+      sessionStorage.setItem('token', myJson);
+      window.location.href = `./pages/main.html`;
+    } catch (err) {
+      console.log(`${err} ITS FUCKED`);
+    }
+  };
 
 }
