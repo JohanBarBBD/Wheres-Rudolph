@@ -22,7 +22,7 @@ function setGame() {
 async function endGame() {
     endTimer();
     try{
-      const response = await fetch('https://localhost:8080/score', {
+      const response = await fetch(`${apiUrl}:8080/score`, {
       method: 'PUT',
       mode: 'cors',
       body: JSON.stringify({
@@ -49,7 +49,7 @@ window.addEventListener('load',async () =>{
     window.location.href='../login.html';
   }else{
     try{
-      const response = await fetch('https://localhost:5000/verify', {
+      const response = await fetch(`${apiUrl}:5000/verify`, {
         method: 'GET',
         mode: 'cors',
         headers: {
