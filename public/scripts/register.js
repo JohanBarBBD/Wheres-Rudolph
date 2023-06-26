@@ -51,7 +51,7 @@ async function RegisterNewUser(){
 
   if(validatePassword()){
     try{
-      const response = await fetch(`${apiUrl}:5000/register`, {
+      const response = await fetch(`${authUrl}/register`, {
         method: 'POST',
         mode: 'cors',
         body: JSON.stringify({
