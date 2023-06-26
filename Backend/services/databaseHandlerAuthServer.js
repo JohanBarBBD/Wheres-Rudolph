@@ -46,9 +46,7 @@ async function registerUser (username, hashedPass, salt, firstName, lastName) {
     request.input('FirstName', sql.VarChar, firstName);
     request.input('LastName', sql.VarChar, lastName);
     
-    console.log(request);
     const result = await request.execute('RegisterNewUser');
-    console.log(result);
     await sql.close();
     return result.recordset
   }
