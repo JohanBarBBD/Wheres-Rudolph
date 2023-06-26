@@ -4,7 +4,7 @@ async function loginButtonHandler(){
   const password = document.getElementById('psw');
 
   try{
-    const response = await fetch(`${apiUrl}:5000/login`, {
+    const response = await fetch(`${authUrl}/login`, {
       method: 'POST',
       mode: 'cors',
       body: JSON.stringify({
@@ -18,7 +18,7 @@ async function loginButtonHandler(){
     const myJson = await response.json();
 
     if(response.status === 200){
-      const WheresRudolphLogin = await fetch(`${apiUrl}:8080/login`, {
+      const WheresRudolphLogin = await fetch(`${apiUrl}/login`, {
         method: 'POST',
         mode: 'cors',
         body: JSON.stringify({
