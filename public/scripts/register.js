@@ -5,7 +5,7 @@ async function RegisterNewUser(){
   const LastName = document.getElementById('lname');
 
   try{
-    const response = await fetch('http://localhost:5000/register', {
+    const response = await fetch('https://localhost:5000/register', {
       method: 'POST',
       mode: 'cors',
       body: JSON.stringify({

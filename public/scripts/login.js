@@ -44,15 +44,12 @@ function validatePassword() {
   return false;
 }
 
-// This will need to call http://localhost://login
-// with the body params of  { name: username, username: username, admin: false }
-
 async function loginButtonHandler(){
   const username = document.getElementById('uname');
   const password = document.getElementById('psw');
 
   try{
-    const response = await fetch('http://localhost:5000/login', {
+    const response = await fetch('https://localhost:5000/login', {
       method: 'POST',
       mode: 'cors',
       body: JSON.stringify({

@@ -1,6 +1,8 @@
 // this will be the auth server
 require('dotenv').config();
 const crypto = require('crypto');
+const fs = require('fs');
+const https = require("https");
 
 const jwt = require('jsonwebtoken');
 const express = require('express');
@@ -101,7 +103,11 @@ app.post("/login", async function(req, res){
   }
 });
 
-const server = app.listen(process.env.AUTH_PORT, function () {
-  const port = server.address().port;
-  console.log(`Application running on http://localhost:${process.env.AUTH_PORT}`);
+const options = {
+  key: process.env.CERTKEY,
+  cert: fs.readFileSync('../server.crt'),
+}
+
+https.createServer(options, app).listen(process.env.AUTH_PORT, function () {
+  console.log(`Application running on https://localhost:${process.env.AUTH_PORT}`);
 });
