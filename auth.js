@@ -61,6 +61,8 @@ app.post('/register', async function(req, res, next){
       res.status(202).json({message: "Created new user"});
     }
   }catch(err){
+    console.log(err);
+
     res.status(500).json({err: "Technical error on register"});
   }
 
@@ -76,14 +78,16 @@ app.post("/login", async function(req, res){
 
   try{
     const userData = await getUserData(username);
+    console.log(userData);
     if(!userData){
       res.status(404).json({message: "User not registered"});
     }else{
       let salt = userData.PasswordSalt;
       let hashedPassword = await Hashpassword(password, salt);
-
+      console.log(hashedPassword);
       if(hashedPassword === userData.PasswordHash){
         const userInformation = await getUserNames(userData.Id);
+        console.log(userInformation);
         const data = {
           username: username,
           FirstName: userInformation.FirstName,
@@ -97,6 +101,7 @@ app.post("/login", async function(req, res){
       }
     }
   }catch(err){
+    console.log(err);
     res.status(500).json({err: "Technical error"});
   }
 });
