@@ -40,7 +40,7 @@ async function userExists (username) {
     return result.recordset.length > 0;
   }
   catch (error) {
-    console.error('Error: ', error.message);
+    console.log(error);
   }
 }
 
@@ -60,7 +60,7 @@ async function newUserInfo (username) {
     return new LeaderboardEntry(result.recordset[0].Username, result.recordset[0].HighScore);
   }
   catch (error) {
-    console.error('Error: ', error.message);
+    throw error;
   }
 }
 
@@ -83,7 +83,7 @@ async function insertScore (username, time) {
     return new LeaderboardEntry(result.recordset[0].Username, result.recordset[0].HighScore);
   }
   catch (error) {
-    console.error('Error: ', error.message);
+    throw error;
   }
 };
 
@@ -108,7 +108,7 @@ async function getLeaderboard () {
     return leaderboard
   }
   catch (error) {
-    console.error('Error: ', error.message);
+    throw error;
   }
 };
 
@@ -128,7 +128,7 @@ async function getUserScore (username) {
     return result.recordset[0];
   }
   catch (error) {
-    console.error('Error: ', error.message);
+    throw error;
   }
 }
 
@@ -150,7 +150,7 @@ async function getHead () {
     return setting;
   }
   catch (error) {
-    console.error('Error: ', error.message);
+    throw error;
   }
 };
 
@@ -172,7 +172,7 @@ async function giveHead (size) {
     return result.recordset[0].HeadSizeId;
   }
   catch (error) {
-    console.error('Error: ', error.message);
+    throw error;
   }
 };
 

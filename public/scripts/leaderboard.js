@@ -1,27 +1,7 @@
 async function populateBestTime(){
 
-  const response = await fetch('http://localhost:8080/score', {
-      method: 'GET',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-      }
-    });
-    const myJson = await response.json();
-  
-  document.getElementById('scoreValue').innerText=`Your best time is: ${myJson.HighScore} seconds`;
-}
-
-window.addEventListener('load',() =>{
-  if(!sessionStorage.getItem('token')){
-    window.location.href='../login.html';
-  }
-});
-
-async function populateLeaderboard(){
   try{
-    const response = await fetch('http://localhost:8080/leaderboard', {
+    const response = await fetch('https://localhost:8080/score', {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -30,19 +10,61 @@ async function populateLeaderboard(){
         }
       });
       const myJson = await response.json();
-      console.log(myJson);
+    
+    if(document.getElementById('scoreValue')){
+      document.getElementById('scoreValue').innerText=`Your best time is: ${myJson?.HighScore} seconds`;  
+    }
+  }catch(err){
+    alert("Technical error try again later.")
+  }
+}
+
+
+
+async function populateLeaderboard(){
+  try{
+    const response = await fetch('https://localhost:8080/leaderboard', {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        }
+      });
+      const myJson = await response.json();
       let list = document.getElementById('leaderList');
-      for(let i =0; i< myJson.length || i<5; i++){
+      for(let i =0; i< myJson.length && i<5; i++){
         let listItem = document.createElement('li');
-        console.log(listItem);
-        listItem.innerText=`${myJson[i].username}: ${myJson[i].highscore} seconds`;
+        listItem.innerText=`${myJson[i]?.username}: ${myJson[i]?.highscore} seconds`;
         list.appendChild(listItem);
       }
   }catch(err){
-    console.log(err);
+    alert("Technical error try again later.")
   }
 
 }
 
-populateBestTime();
-populateLeaderboard();
+window.addEventListener('load', async() =>{
+  if(!sessionStorage.getItem('token')){
+    window.location.href='../login.html';
+  }else{
+    try{
+      const response = await fetch('https://localhost:5000/verify', {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        }
+      })
+      if(response.status !== 200){
+        window.location.href='../login.html';
+      }else{
+        populateLeaderboard();
+        populateBestTime();
+      }
+    }catch(error){
+      window.location.href='../login.html';  
+    }
+  }
+});

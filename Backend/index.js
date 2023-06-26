@@ -1,13 +1,10 @@
 const https = require("https");
 const fs = require("fs");
-const {getLeaderboard, userExists, getUserScore, insertScore} = require('./services/databaseHandler')
-const {Hashpassword, DecodeToken, generateJWT, authenticateJWT} = require('./services/credentialHandling');
+const {getLeaderboard, userExists, getUserScore, insertScore, newUserInfo} = require('./services/databaseHandler')
 const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const bodyparser = require('body-parser');
-
-
 
 const app = express();
 const corsOptions = {
@@ -21,7 +18,6 @@ app.use(bodyparser.json());
 function authenticateUser(req, res, next){
   const authorizationHeader = req.headers["authorization"];
   const token = authorizationHeader && authorizationHeader.split(' ')[1];
-
   if(token == null){
     return res.status(401).json({error: "Not authorized"});
   }
@@ -42,23 +38,6 @@ app.get("/leaderboard", cors(corsOptions), authenticateUser,async function(req, 
   }
 });
 
-app.post("/login", async function(req, res){
-  console.log(req.body);
-  const data = {
-    name: req.body?.name,
-    username: req.body?.username,
-    admin: req.body?.admin,
-  };
-
-  try{
-    const jwt = generateJWT(data); 
-    res.json(jwt)
-  }catch(err){
-    console.log(`Error: ${err}`);
-  }
-});
-
-//THIS WAS FOR TESTING PURPOSES
 app.get("/score", authenticateUser, async function(req,res){
   try{
     const result = await getUserScore(req.user.username);
@@ -67,6 +46,23 @@ app.get("/score", authenticateUser, async function(req,res){
     res.status(500).send("Technical error try again later");
   }
 });
+
+app.post("/login", async function(req, res){
+
+  try{
+    const doesUserExist = await userExists(req.body?.username);
+    if(!doesUserExist){
+      const addNewUser = await newUserInfo(req.body?.username);
+      
+      res.status(200).json({message: "added user"});
+    }else{
+      res.status(200).json({message: "exists"});
+    }
+  }catch(err){
+    res.status(500).send("Technical error try again later");
+  }
+});
+
 
 app.put("/score", authenticateUser, async function(req, res){
   try{
