@@ -13,7 +13,7 @@ window.addEventListener('load',async () =>{
     window.location.href='../login.html';
   }else{
     try{
-      const response = await fetch('https://localhost:5000/verify', {
+      const response = await fetch('https://ec2-13-246-95-10.af-south-1.compute.amazonaws.com:5000/verify', {
         method: 'GET',
         mode: 'cors',
         headers: {

@@ -1,7 +1,7 @@
 async function populateBestTime(){
 
   try{
-    const response = await fetch('https://localhost:8080/score', {
+    const response = await fetch('https://ec2-13-246-95-10.af-south-1.compute.amazonaws.com:8080/score', {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -23,7 +23,7 @@ async function populateBestTime(){
 
 async function populateLeaderboard(){
   try{
-    const response = await fetch('https://localhost:8080/leaderboard', {
+    const response = await fetch('https://ec2-13-246-95-10.af-south-1.compute.amazonaws.com:8080/leaderboard', {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -49,7 +49,7 @@ window.addEventListener('load', async() =>{
     window.location.href='../login.html';
   }else{
     try{
-      const response = await fetch('https://localhost:5000/verify', {
+      const response = await fetch('https://ec2-13-246-95-10.af-south-1.compute.amazonaws.com:5000/verify', {
         method: 'GET',
         mode: 'cors',
         headers: {
