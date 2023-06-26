@@ -17,7 +17,7 @@ app.use(cors(corsOptions));
 app.use(bodyparser.json());
 
 function generateJWT(data){
-  return jwt.sign(data, process.env.JWT_SECRET);
+  return jwt.sign(data, process.env.JWT_SECRET, {expiresIn: process.env.TOKEN_EXPIRATION});
 };
 
 function Hashpassword(password, salt){ 
@@ -28,6 +28,16 @@ function Hashpassword(password, salt){
     });
   }) 
 };
+
+app.get("/verify", function(req,res){
+  const authorizationHeader = req.headers["authorization"]; 
+  const token = authorizationHeader && authorizationHeader.split(' ')[1];
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if(err) return res.status(403).json({ error: "NAUGHTY FORBIDDEN"});
+    return res.status(200).json({message: "valid"});
+  });
+});
 
 app.post('/register', async function(req, res, next){
   const username = req.body?.username;
@@ -57,9 +67,10 @@ app.post('/register', async function(req, res, next){
 });
 
 app.post("/login", async function(req, res){
+
   const username = req.body?.username;
   const password = req.body?.password;
-
+  console.log(password);
   if(!username || !password){
     return res.status(400).json({err: "Invalid parameters"});
   }
@@ -92,7 +103,7 @@ app.post("/login", async function(req, res){
   }
 });
 
-const server = app.listen(process.env.PORT || 5000, function () {
+const server = app.listen(5000, function () {
   const port = server.address().port;
-  console.log(`Application running on http://localhost:${port}`);
+  console.log(`Application running on http://localhost:${5000}`);
 });

@@ -1,7 +1,7 @@
 async function populateBestTime(){
 
   try{
-    const response = await fetch('http://localhost:8080/score', {
+    const response = await fetch('https://localhost:8080/score', {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -24,7 +24,7 @@ async function populateBestTime(){
 
 async function populateLeaderboard(){
   try{
-    const response = await fetch('http://localhost:8080/leaderboard', {
+    const response = await fetch('https://localhost:8080/leaderboard', {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -46,10 +46,27 @@ async function populateLeaderboard(){
 
 }
 
-window.addEventListener('load',() =>{
+window.addEventListener('load', async() =>{
   if(!sessionStorage.getItem('token')){
     window.location.href='../login.html';
+  }else{
+    try{
+      const response = await fetch('http://localhost:5000/verify', {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        }
+      })
+      if(response.status !== 200){
+        window.location.href='../login.html';
+      }else{
+        populateLeaderboard();
+        populateBestTime();
+      }
+    }catch(error){
+      window.location.href='../login.html';  
+    }
   }
 });
-populateBestTime();
-populateLeaderboard();

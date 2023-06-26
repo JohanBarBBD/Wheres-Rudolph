@@ -71,7 +71,7 @@ app.post("/login", async function(req, res){
 
   try{
     const doesUserExist = await userExists(req.body?.username);
-    
+    console.log("Enters");
     if(!doesUserExist){
       const addNewUser = await newUserInfo(req.body?.username);
       
