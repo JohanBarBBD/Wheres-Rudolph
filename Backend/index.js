@@ -8,7 +8,7 @@ const bodyparser = require('body-parser');
 
 const app = express();
 const corsOptions = {
-  origin: process.env.CORS_ORIGIN,
+  origin: "*",
   optionsSuccessStatus: 200
 }
 app.use(cors(corsOptions));
