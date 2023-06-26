@@ -38,26 +38,6 @@ app.get("/leaderboard", cors(corsOptions), authenticateUser,async function(req, 
   }
 });
 
-
-app.get('/testGitHubLogin', async function(req,res){
-  try{
-    const response = await fetch('https://github.com/login/oauth/authorize?' + new URLSearchParams({
-      client_id: '49cb04e7c492a9b174dc',
-      redirect_uri: 'http://localhost:3000/authenticateUser',
-      scope: 'user'
-    }), {
-      method: "GET",
-      Headers: {
-        "Access-Control-Allow-Origin": '*'
-      }
-    })
-    
-    res.json(json);
-  }catch(err){
-    console.log(err);
-  }
-});
-
 app.get("/score", authenticateUser, async function(req,res){
   try{
     const result = await getUserScore(req.user.username);
@@ -71,7 +51,6 @@ app.post("/login", async function(req, res){
 
   try{
     const doesUserExist = await userExists(req.body?.username);
-    console.log("Enters");
     if(!doesUserExist){
       const addNewUser = await newUserInfo(req.body?.username);
       

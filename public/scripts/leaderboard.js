@@ -15,7 +15,6 @@ async function populateBestTime(){
       document.getElementById('scoreValue').innerText=`Your best time is: ${myJson?.HighScore} seconds`;  
     }
   }catch(err){
-    console.log(err);
     alert("Technical error try again later.")
   }
 }
@@ -40,7 +39,6 @@ async function populateLeaderboard(){
         list.appendChild(listItem);
       }
   }catch(err){
-    console.log(err); 
     alert("Technical error try again later.")
   }
 

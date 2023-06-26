@@ -70,7 +70,6 @@ app.post("/login", async function(req, res){
 
   const username = req.body?.username;
   const password = req.body?.password;
-  console.log(password);
   if(!username || !password){
     return res.status(400).json({err: "Invalid parameters"});
   }
@@ -98,12 +97,11 @@ app.post("/login", async function(req, res){
       }
     }
   }catch(err){
-    console.log(err);
     res.status(500).json({err: "Technical error"});
   }
 });
 
-const server = app.listen(5000, function () {
+const server = app.listen(process.env.AUTH_PORT, function () {
   const port = server.address().port;
-  console.log(`Application running on http://localhost:${5000}`);
+  console.log(`Application running on http://localhost:${process.env.AUTH_PORT}`);
 });
