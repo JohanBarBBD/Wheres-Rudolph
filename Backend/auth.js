@@ -11,11 +11,8 @@ const cors = require('cors');
 const bodyparser = require('body-parser');
 const { userExists,registerUser, getUserData, getUserNames } = require( './services/databaseHandlerAuthServer' );
 
-const corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200
-}
-app.use(cors(corsOptions));
+
+app.use(cors());
 app.use(bodyparser.json());
 
 function generateJWT(data){

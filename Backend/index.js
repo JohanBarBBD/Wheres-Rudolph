@@ -8,7 +8,7 @@ const bodyparser = require('body-parser');
 
 const app = express();
 const corsOptions = {
-  origin: '*',
+  origin: 'https://d387s5n8hip7ka.cloudfront.net/',
   optionsSuccessStatus: 200
 }
 app.use(cors(corsOptions));
