@@ -17,6 +17,8 @@ app.use(cors(corsOptions));
 app.use(bodyparser.json());
 
 function generateJWT(data){
+  console.log(process.env.JWT_SECRET);
+  console.log(process.env.TOKEN_EXPIRATION);
   return jwt.sign(data, process.env.JWT_SECRET, {expiresIn: process.env.TOKEN_EXPIRATION});
 };
 
