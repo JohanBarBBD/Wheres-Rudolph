@@ -60,7 +60,6 @@ app.get('/testGitHubLogin', async function(req,res){
 
 app.get("/score", authenticateUser, async function(req,res){
   try{
-    console.log(req.user);
     const result = await getUserScore(req.user.username);
     res.json(result);
   }catch(err){
