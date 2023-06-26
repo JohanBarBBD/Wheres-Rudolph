@@ -51,7 +51,7 @@ async function RegisterNewUser(){
 
   if(validatePassword()){
     try{
-      const response = await fetch('https://ec2-13-246-95-10.af-south-1.compute.amazonaws.com:5000/register', {
+      const response = await fetch(`${apiUrl}:5000/register`, {
         method: 'POST',
         mode: 'cors',
         body: JSON.stringify({
