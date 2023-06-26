@@ -17,8 +17,6 @@ app.use(cors(corsOptions));
 app.use(bodyparser.json());
 
 function generateJWT(data){
-  console.log(process.env.JWT_SECRET);
-  console.log(process.env.TOKEN_EXPIRATION);
   return jwt.sign(data, process.env.JWT_SECRET, {expiresIn: process.env.TOKEN_EXPIRATION});
 };
 
@@ -80,16 +78,13 @@ app.post("/login", async function(req, res){
 
   try{
     const userData = await getUserData(username);
-    console.log(userData);
     if(!userData){
       res.status(404).json({message: "User not registered"});
     }else{
       let salt = userData.PasswordSalt;
       let hashedPassword = await Hashpassword(password, salt);
-      console.log(hashedPassword);
       if(hashedPassword === userData.PasswordHash){
         const userInformation = await getUserNames(userData.Id);
-        console.log(userInformation);
         const data = {
           username: username,
           FirstName: userInformation.FirstName,

@@ -69,12 +69,12 @@ app.put("/score", authenticateUser, async function(req, res){
 
     const currentHighscore = await getUserScore(req.user.username);
 
-    if(currentHighscore.HighScore > score){
+    if(currentHighscore.HighScore > score || !currentHighscore.HighScore){
       const result = await insertScore(req.user.username, score);
       res.status(202).send(result);
     }else{
       res.status(304).send('score is not the highest');
-    };
+    }
   }catch(err){
     res.status(500).send("Technical error please try again later");
   }
