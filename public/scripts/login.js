@@ -33,7 +33,7 @@ function checkPassword(password) {
   return message;
 }
 
-function validatePassword() {
+function validateInput() {
   let message = "";
 
   const username = document.getElementById("uname").value;
@@ -45,7 +45,7 @@ function validatePassword() {
     message = checkPassword(password);
   }
 
-  if (message != "") {
+  if (message !== "") {
     showInvalidMessage(message);
     return false;
   }
@@ -78,7 +78,7 @@ async function gitHublogin(){
 async function loginButtonHandler(){
   const username = document.getElementById('uname');
   const password = document.getElementById('psw');
-
+  if(validateInput()){
   try{
     const response = await fetch('http://localhost:5000/login', {
       method: 'POST',
@@ -115,5 +115,6 @@ async function loginButtonHandler(){
   } catch(err){
     alert("Technical error, try again later.")
   }
+}
 };
 
