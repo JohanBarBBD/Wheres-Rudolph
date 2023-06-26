@@ -105,7 +105,7 @@ app.post("/login", async function(req, res){
 
 const options = {
   key: process.env.CERTKEY,
-  cert: fs.readFileSync('../server.crt'),
+  cert: fs.readFileSync('server.crt'),
 }
 
 https.createServer(options, app).listen(process.env.AUTH_PORT, function () {
