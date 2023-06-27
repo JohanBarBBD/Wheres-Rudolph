@@ -4,6 +4,7 @@ async function loginButtonHandler(){
   const password = document.getElementById('psw');
 
   try{
+    showLoadingAnimation()
     const response = await fetch(`${authUrl}/login`, {
       method: 'POST',
       mode: 'cors',
@@ -30,14 +31,30 @@ async function loginButtonHandler(){
       });
       if(WheresRudolphLogin.status === 200){
         sessionStorage.setItem('token',myJson);
+        hideLoadingAnimation()
         window.location.href=`./pages/main.html`;
       }
+      hideLoadingAnimation()
     }
     else{
+      hideLoadingAnimation()
      alert("Invalid username or password");
    }
   } catch(err){
+    hideLoadingAnimation()
     alert("Technical error, try again later.")
   }
 };
+
+function showLoadingAnimation() {
+  var loadingOverlay = document.getElementById("loading-overlay");
+  loadingOverlay.style.display = "flex";
+}
+
+
+function hideLoadingAnimation() {
+  var loadingOverlay = document.getElementById("loading-overlay");
+  loadingOverlay.style.display = "none";
+}
+
 
