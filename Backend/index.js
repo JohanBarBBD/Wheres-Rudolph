@@ -1,5 +1,4 @@
-const https = require("https");
-const fs = require("fs");
+
 const {getLeaderboard, userExists, getUserScore, insertScore, newUserInfo} = require('./services/databaseHandler')
 const express = require('express');
 const cors = require('cors');
@@ -8,7 +7,7 @@ const bodyparser = require('body-parser');
 
 const app = express();
 const corsOptions = {
-  origin: "*",
+  origin: '*',
   optionsSuccessStatus: 200
 }
 app.use(cors(corsOptions));
@@ -70,22 +69,18 @@ app.put("/score", authenticateUser, async function(req, res){
 
     const currentHighscore = await getUserScore(req.user.username);
 
-    if(currentHighscore.HighScore > score){
+    if(currentHighscore.HighScore > score || !currentHighscore.HighScore){
       const result = await insertScore(req.user.username, score);
       res.status(202).send(result);
     }else{
       res.status(304).send('score is not the highest');
-    };
+    }
   }catch(err){
     res.status(500).send("Technical error please try again later");
   }
 });
 
-const options = {
-  key: process.env.CERTKEY,
-  cert: fs.readFileSync('../server.crt'),
-}
-
-https.createServer(options, app).listen(process.env.PORT, function () {
-  console.log(`Application running on https://localhost:${process.env.PORT}`);
+const server = app.listen(process.env.PORT || 8080, function () {
+  const port = server.address().port;
+  console.log("Application running on port: ", port);
 });
