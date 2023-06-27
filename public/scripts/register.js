@@ -66,8 +66,7 @@ async function RegisterNewUser(){
         }
       });
   
-      if(response.status === 200){
-        hideLoadingAnimation()
+      if(response.status === 202){
         window.location.href=`../login.html`;
       }
       if(response.status === 400){

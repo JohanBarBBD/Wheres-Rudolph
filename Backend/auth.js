@@ -1,8 +1,6 @@
 // this will be the auth server
 require('dotenv').config();
 const crypto = require('crypto');
-const fs = require('fs');
-const https = require("https");
 
 const jwt = require('jsonwebtoken');
 const express = require('express');
@@ -11,8 +9,11 @@ const cors = require('cors');
 const bodyparser = require('body-parser');
 const { userExists,registerUser, getUserData, getUserNames } = require( './services/databaseHandlerAuthServer' );
 
-
-app.use(cors());
+const corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions));
 app.use(bodyparser.json());
 
 function generateJWT(data){
@@ -60,6 +61,8 @@ app.post('/register', async function(req, res, next){
       res.status(202).json({message: "Created new user"});
     }
   }catch(err){
+    console.log(err);
+
     res.status(500).json({err: "Technical error on register"});
   }
 
@@ -80,7 +83,6 @@ app.post("/login", async function(req, res){
     }else{
       let salt = userData.PasswordSalt;
       let hashedPassword = await Hashpassword(password, salt);
-
       if(hashedPassword === userData.PasswordHash){
         const userInformation = await getUserNames(userData.Id);
         const data = {
@@ -96,15 +98,13 @@ app.post("/login", async function(req, res){
       }
     }
   }catch(err){
+    console.log(err);
     res.status(500).json({err: "Technical error"});
   }
 });
 
-const options = {
-  key: process.env.CERTKEY,
-  cert: fs.readFileSync('../server.crt'),
-}
 
-https.createServer(options, app).listen(process.env.AUTH_PORT, function () {
-  console.log(`Application running on https://localhost:${process.env.AUTH_PORT}`);
+const server = app.listen(process.env.AUTH_PORT || 8080, function () {
+  const port = server.address().port;
+  console.log("Application running on port: ", port);
 });

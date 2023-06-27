@@ -94,7 +94,7 @@ async function getLeaderboard () {
       trustServerCertificate: true,
     })
 
-    const query = 'SELECT TOP 15 Username, HighScore FROM UserInfo ORDER BY HighScore';
+    const query = 'SELECT TOP 15 Username, HighScore FROM UserInfo WHERE HighScore > 0 ORDER BY HighScore ';
     const request = new sql.Request();
 
     const result = await request.query(query);
