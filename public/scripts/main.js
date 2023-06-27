@@ -3,6 +3,7 @@ window.addEventListener('load', async () =>{
     window.location.href='../login.html';
   }else{
     try{
+      showLoadingAnimation()
       const response = await fetch(`${authUrl}/verify`, {
         method: 'GET',
         mode: 'cors',
@@ -12,9 +13,13 @@ window.addEventListener('load', async () =>{
         }
       })
       if(response.status !== 200){
+        hideLoadingAnimation()
         window.location.href='../login.html';
       }
+      hideLoadingAnimation()
+
     }catch(error){
+      hideLoadingAnimation()
       window.location.href='../login.html';  
     }
   }
