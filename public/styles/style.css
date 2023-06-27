@@ -106,7 +106,7 @@ main img {
 }
 
 .rounded-button {
-    width: 15rem;
+    width: 13rem;
     appearance: none;
     background-color: #FFFFFF;
     border-radius: 40em;
@@ -226,6 +226,7 @@ main img {
 
 ul {
     list-style: none;
+    padding: 0;
 }
 
 .game-bg {
