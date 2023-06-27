@@ -1,6 +1,8 @@
 async function populateBestTime(){
 
   try{
+    showLoadingAnimation()
+
     const response = await fetch(`${apiUrl}/score`, {
         method: 'GET',
         mode: 'cors',
@@ -14,7 +16,11 @@ async function populateBestTime(){
     if(document.getElementById('scoreValue')){
       document.getElementById('scoreValue').innerText=`Your best time is: ${myJson?.HighScore} seconds`;  
     }
+    hideLoadingAnimation()
+
   }catch(err){
+    hideLoadingAnimation()
+
     alert("Technical error try again later.")
   }
 }
@@ -23,6 +29,8 @@ async function populateBestTime(){
 
 async function populateLeaderboard(){
   try{
+    showLoadingAnimation()
+
     const response = await fetch(`${apiUrl}/leaderboard`, {
         method: 'GET',
         mode: 'cors',
@@ -38,7 +46,11 @@ async function populateLeaderboard(){
         listItem.innerText=`${myJson[i]?.username}: ${myJson[i]?.highscore} seconds`;
         list.appendChild(listItem);
       }
+      hideLoadingAnimation()
+
   }catch(err){
+    hideLoadingAnimation()
+
     alert("Technical error try again later.")
   }
 
@@ -49,6 +61,7 @@ window.addEventListener('load', async() =>{
     window.location.href='../login.html';
   }else{
     try{
+      showLoadingAnimation()
       const response = await fetch(`${authUrl}/verify`, {
         method: 'GET',
         mode: 'cors',
@@ -58,12 +71,15 @@ window.addEventListener('load', async() =>{
         }
       })
       if(response.status !== 200){
+        hideLoadingAnimation()
         window.location.href='../login.html';
       }else{
+        hideLoadingAnimation()
         populateLeaderboard();
         populateBestTime();
       }
     }catch(error){
+      hideLoadingAnimation()
       window.location.href='../login.html';  
     }
   }

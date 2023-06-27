@@ -22,6 +22,7 @@ function setGame() {
 async function endGame() {
     endTimer();
     try{
+      showLoadingAnimation()
       const response = await fetch(`${apiUrl}/score`, {
       method: 'PUT',
       mode: 'cors',
@@ -34,11 +35,14 @@ async function endGame() {
       }
     });
       if(response.status === 403 || response.status === 401){
+        hideLoadingAnimation();
         window.location.href = "../login.html";
       }
+      hideLoadingAnimation();
       sessionStorage.setItem('result', timeElapsed)
       window.location.href="result.html";
     }catch (err){
+      hideLoadingAnimation()
       alert("Technical error, try again later.")
     }
 }
@@ -49,6 +53,7 @@ window.addEventListener('load',async () =>{
     window.location.href='../login.html';
   }else{
     try{
+      showLoadingAnimation()
       const response = await fetch(`${authUrl}/verify`, {
         method: 'GET',
         mode: 'cors',
@@ -58,9 +63,13 @@ window.addEventListener('load',async () =>{
         }
       })
       if(response.status !== 200){
+        hideLoadingAnimation()
         window.location.href='../login.html';
       }
+      hideLoadingAnimation()
+
     }catch(error){
+      hideLoadingAnimation()
       window.location.href='../login.html';  
     }
   }

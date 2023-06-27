@@ -51,6 +51,7 @@ async function RegisterNewUser(){
 
   if(validatePassword()){
     try{
+      showLoadingAnimation()
       const response = await fetch(`${authUrl}/register`, {
         method: 'POST',
         mode: 'cors',
@@ -66,15 +67,21 @@ async function RegisterNewUser(){
       });
   
       if(response.status === 200){
+        hideLoadingAnimation()
         window.location.href=`../login.html`;
       }
       if(response.status === 400){
+        hideLoadingAnimation()
         alert("Bad request: Invalid input");
       }
       if(response.status === 409){
+        hideLoadingAnimation()
         alert("User exists");
       }
+      hideLoadingAnimation()
+
     } catch(err){
+      hideLoadingAnimation()
       alert("Technical error");
     }
   }
