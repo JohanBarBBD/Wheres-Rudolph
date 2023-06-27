@@ -46,15 +46,4 @@ async function loginButtonHandler(){
   }
 };
 
-function showLoadingAnimation() {
-  var loadingOverlay = document.getElementById("loading-overlay");
-  loadingOverlay.style.display = "flex";
-}
-
-
-function hideLoadingAnimation() {
-  var loadingOverlay = document.getElementById("loading-overlay");
-  loadingOverlay.style.display = "none";
-}
-
 
